@@ -1,6 +1,32 @@
-// TODO: write your code here
-import sum from './basic';
+export default function orderByProps(obj, arr = []) {
+  const result = [];
+  const keys = [];
 
-console.log('worked');
+  arr.forEach((element) => {
+    for (const key in obj) {
+      if (key === element) {
+        result.push({
+          key: `${key}`,
+          value: `${obj[key]}`,
+        });
+      }
+    }
+  });
 
-console.log(sum([1, 2]));
+  for (const key in obj) {
+    if (!arr.includes(key)) {
+      keys.push(key);
+    }
+  }
+
+  keys.sort();
+
+  keys.forEach((element) => {
+    result.push({
+      key: `${element}`,
+      value: `${obj[element]}`,
+    });
+  });
+
+  return result;
+}
